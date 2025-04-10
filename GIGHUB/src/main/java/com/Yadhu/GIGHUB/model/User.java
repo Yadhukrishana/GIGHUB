@@ -1,12 +1,11 @@
 package com.Yadhu.GIGHUB.model;
 
 import com.Yadhu.GIGHUB.role.Role;
-import com.fasterxml.jackson.core.JsonParser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
+
 
 
 @Entity
