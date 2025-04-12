@@ -59,7 +59,6 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(request.getPassword())); // encrypt password
         user.setPhone(request.getPhone());
         user.setPlace(request.getPlace());
-
         userRepository.save(user);
 
         return ResponseEntity.ok("User registered successfully");

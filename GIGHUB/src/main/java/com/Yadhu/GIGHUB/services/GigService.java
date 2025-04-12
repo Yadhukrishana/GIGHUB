@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class GigService {
@@ -25,5 +26,10 @@ gig.setStatus(GigStatus.POSTED);
 gig.setPostedAt(LocalDateTime.now());
 gigRepository.save(gig);
 return ResponseEntity.ok("gig posted  successfully");
+   }
+
+   public List<Gig> getAllGigs()
+   {
+      return gigRepository.findAll();
    }
 }
