@@ -3,11 +3,11 @@ package com.Yadhu.GIGHUB.model;
 import com.Yadhu.GIGHUB.role.GigStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 @Setter
 @Getter
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -35,6 +35,7 @@ public class Gig {
     private User takenBy;
 
     private LocalDateTime postedAt;
+
     private LocalDateTime completedAt;
 
 }

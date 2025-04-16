@@ -1,5 +1,8 @@
 package com.Yadhu.GIGHUB.services;
 
+import com.Yadhu.GIGHUB.gigDto.GigMapper;
+import com.Yadhu.GIGHUB.gigDto.GigRequest;
+import com.Yadhu.GIGHUB.gigDto.GigResponse;
 import com.Yadhu.GIGHUB.model.Gig;
 import com.Yadhu.GIGHUB.model.User;
 import com.Yadhu.GIGHUB.repository.GigRepository;
@@ -18,14 +21,16 @@ public class GigService {
    @Autowired
    private UserRepository userRepo;
 
-   public ResponseEntity<?> gigPost(Gig gig, String email)
+   public ResponseEntity<GigResponse> gigPost(GigRequest request, String email)
    {
 User user= userRepo.findByEmail(email);
-gig.setPostedBy(user);
-gig.setStatus(GigStatus.POSTED);
+Gig gig = GigMapper.toGig(request,user);
+      gig.setPostedBy(user);
+      gig.setStatus(GigStatus.POSTED);
 gig.setPostedAt(LocalDateTime.now());
-gigRepository.save(gig);
-return ResponseEntity.ok("gig posted  successfully");
+ gigRepository.save(gig);
+ GigResponse response = GigMapper.toDto(gig);
+return ResponseEntity.ok(response);
    }
 
    public List<Gig> getAllGigs()

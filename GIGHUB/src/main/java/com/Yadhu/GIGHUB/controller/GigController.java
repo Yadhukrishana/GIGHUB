@@ -1,4 +1,6 @@
 package com.Yadhu.GIGHUB.controller;
+import com.Yadhu.GIGHUB.gigDto.GigRequest;
+import com.Yadhu.GIGHUB.gigDto.GigResponse;
 import com.Yadhu.GIGHUB.model.Gig;
 import com.Yadhu.GIGHUB.services.GigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,10 @@ public class GigController {
     private GigService gigService;
 
     @PostMapping("/post")
-    public ResponseEntity<?> postGig(@RequestBody Gig gig, Authentication authentication) {
+    public ResponseEntity<GigResponse>postGig(@RequestBody GigRequest request, Authentication authentication) {
         String userEmail = authentication.getName(); // Extracts email from JWT token
-        ResponseEntity<?> savedGig = gigService.gigPost(gig, userEmail);
-        return ResponseEntity.ok(savedGig + "Gig saved successfully");
+        return   gigService.gigPost(request, userEmail);
+
     }
     @PostMapping("/all")
     public ResponseEntity<List<Gig>>getaAllGigs()
